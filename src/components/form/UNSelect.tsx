@@ -11,7 +11,7 @@ const UNSelect = ({ label, name, options }: TUNSelectProps) => {
   return (
     <Controller
       name={name}
-      render={({ field }) => (
+      render={({ field, fieldState: { error } }) => (
         <Form.Item label={label}>
           <Select
             style={{ width: "100%" }}
@@ -19,6 +19,7 @@ const UNSelect = ({ label, name, options }: TUNSelectProps) => {
             options={options}
             size="large"
           />
+          {error && <small style={{ color: "red" }}>{error.message}</small>}
         </Form.Item>
       )}
     />
