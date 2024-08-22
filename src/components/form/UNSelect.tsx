@@ -1,24 +1,28 @@
 import { Form, Select } from "antd";
+import { Controller } from "react-hook-form";
 
-function UNSelect({ label }) {
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
+type TUNSelectProps = {
+  label: string;
+  name: string;
+  options: { value: string; label: string; disabled?: boolean }[];
+};
+
+const UNSelect = ({ label, name, options }: TUNSelectProps) => {
   return (
-    <Form.Item label={label}>
-      <Select
-        defaultValue="lucy"
-        style={{ width: "100%" }}
-        onChange={handleChange}
-        options={[
-          { value: "jack", label: "Jack" },
-          { value: "lucy", label: "Lucy" },
-          { value: "Yiminghe", label: "yiminghe" },
-          { value: "disabled", label: "Disabled", disabled: true },
-        ]}
-      />
-    </Form.Item>
+    <Controller
+      name={name}
+      render={({ field }) => (
+        <Form.Item label={label}>
+          <Select
+            style={{ width: "100%" }}
+            {...field}
+            options={options}
+            size="large"
+          />
+        </Form.Item>
+      )}
+    />
   );
-}
+};
 
 export default UNSelect;

@@ -13,7 +13,11 @@ const UNInput = ({ type, name, label }: TInputProps) => {
       {/* {label ? label : null} */}
       <Controller
         name={name}
-        render={({ field }) => <Form.Item label={label}><Input {...field} type={type} id={name} /></Form.Item>}
+        render={({ field }) => (
+          <Form.Item label={label}>
+            <Input {...field} type={type} id={name} size="large" />
+          </Form.Item>
+        )}
       />
     </div>
   );
